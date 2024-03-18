@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="D:\Projects\scotec\SignalF\SignalF.Devices\packages\signalf.controller\0.8.0-dev.11\contentFiles\any\any\DefaultConfiguration.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Scotec.Math.Units" Version="1.0.0" />
+    <PackageReference Include="SignalF.Extensions.Configuration" Version="0.8.0-dev.11" />
+  </ItemGroup>
+
+</Project>
