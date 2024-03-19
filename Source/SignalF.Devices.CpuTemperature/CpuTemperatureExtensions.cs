@@ -4,14 +4,17 @@ using Scotec.Math.Units;
 using SignalF.Configuration;
 using SignalF.Datamodel.Signals;
 using SignalF.Extensions.Configuration;
+
 namespace SignalF.Devices.CpuTemperature;
 
 [SupportedOSPlatform("linux")]
-
 public static class CpuTemperatureExtensions
 {
-    private const string DeviceName = "CpuTemperature";
-    private const string SignalName = "CpuTemperature";
+    private const string DeviceTemplateName = "CpuTemperatureTemplate";
+    private const string DeviceDefinitionName = "CpuTemperatureDefinition";
+    private const string DeviceDefaultName = "CpuTemperature";
+    private const string SignalDefinitionName = "CpuTemperature";
+    private const string SignalDefaultName = "CPU-Temperature";
 
     [SupportedOSPlatform("linux")]
     public static IServiceCollection AddCpuTemperature(this IServiceCollection services)
@@ -19,50 +22,50 @@ public static class CpuTemperatureExtensions
         return services.AddTransient<CpuTemperature>();
     }
 
-    public static ICoreConfiguration AddCpuTemperatureTemplate(this ICoreConfiguration configuration)
+    public static ISignalFConfiguration AddCpuTemperature(this ISignalFConfiguration configuration)
+    {
+        return configuration.AddCpuTemperatureConfiguration(DeviceDefaultName, SignalDefaultName);
+    }
+
+    public static ISignalFConfiguration AddCpuTemperature(this ISignalFConfiguration configuration, string deviceName, string signalName)
+    {
+        return configuration.AddCpuTemperatureTemplate()
+            .AddCpuTemperatureDefinition()
+            .AddCpuTemperatureConfiguration(deviceName, signalName);
+    }
+
+    private static ISignalFConfiguration AddCpuTemperatureTemplate(this ISignalFConfiguration configuration)
     {
         configuration.AddDeviceTemplate(builder =>
         {
-            builder.SetName($"{DeviceName}Template")
-                   .SetType<CpuTemperature>()
-                   .AddSignalSourceDefinition(SignalName, EUnitType.Temperature);
+            builder.SetName(DeviceTemplateName)
+                .SetType<CpuTemperature>()
+                .AddSignalSourceDefinition(SignalDefinitionName, EUnitType.Temperature);
         });
 
         return configuration;
     }
 
-    public static ICoreConfiguration AddCpuTemperatureDefinition(this ICoreConfiguration configuration)
-    {
-        configuration.AddDeviceDefinition(builder =>
-        {
-            builder.SetName($"{DeviceName}Definition")
-                   .UseTemplate($"{DeviceName}Template");
-        });
-
-        return configuration;
-    }
-
-    public static ICoreConfiguration AddCpuTemperatureConfiguration(this ICoreConfiguration configuration)
-    {
-        return configuration.AddCpuTemperatureConfiguration(DeviceName, SignalName);
-    }
-
-    public static ICoreConfiguration AddCpuTemperatureConfiguration(this ICoreConfiguration configuration, string deviceName, string signalName)
+    private static ISignalFConfiguration AddCpuTemperatureConfiguration(this ISignalFConfiguration configuration,
+        string deviceName, string signalName)
     {
         configuration.AddDeviceConfiguration(builder =>
         {
             builder.SetName(deviceName)
-                   .UseDefinition($"{deviceName}Definition")
-                   .AddSignalSourceConfiguration(signalName, "CPUTemperature", Temperature.Units.DegreeCelsius);
+                .UseDefinition(DeviceDefinitionName)
+                .AddSignalSourceConfiguration(signalName, SignalDefinitionName, Temperature.Units.DegreeCelsius);
         });
 
         return configuration;
     }
-
-    public static ICoreConfiguration AddCpuTemperature(this ICoreConfiguration configuration, string deviceName, string signalName)
+    private static ISignalFConfiguration AddCpuTemperatureDefinition(this ISignalFConfiguration configuration)
     {
-        return configuration.AddCpuTemperatureTemplate()
-                            .AddCpuTemperatureDefinition()
-                            .AddCpuTemperatureConfiguration(deviceName, signalName);
+        configuration.AddDeviceDefinition(builder =>
+        {
+            builder.SetName(DeviceDefinitionName)
+                .UseTemplate(DeviceTemplateName);
+        });
+
+        return configuration;
     }
 }
