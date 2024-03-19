@@ -20,7 +20,7 @@
 		<PackageOutputPath>..\..\LocalPackages</PackageOutputPath>
 		<PackageProjectUrl>https://github.com/Signal-F</PackageProjectUrl>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<RepositoryUrl>https://github.com/Signal-F/SignalF.Controller</RepositoryUrl>
+		<RepositoryUrl>https://github.com/Signal-F/SignalF.Devices</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageVersion Condition="'$(PackageVersion)' == ''">0.0.0</PackageVersion>
 		<ProjectUrl>https://github.com/SignalF</ProjectUrl>

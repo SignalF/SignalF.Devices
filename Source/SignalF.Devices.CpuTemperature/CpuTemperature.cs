@@ -37,8 +37,9 @@ public sealed class CpuTemperature : NullDevice<IDeviceConfiguration>, ICpuTempe
             }
             case ETaskType.Write:
             {
+                var timestamp = SignalHub.GetTimestamp();
                 var temperature = Device.IsAvailable ? Device.Temperature[Temperature.Units.Kelvin] : double.NaN;
-                SignalHub.SetValue(_channelIndex, temperature);
+                SignalHub.SetSignal(new Signal(_channelIndex, temperature, timestamp));
                 break;
             }
             case ETaskType.Exit:
