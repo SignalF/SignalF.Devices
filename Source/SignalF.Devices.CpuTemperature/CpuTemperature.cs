@@ -14,7 +14,7 @@ namespace SignalF.Devices.CpuTemperature;
 [SupportedOSPlatform("linux")]
 public sealed class CpuTemperature : NullDevice<IDeviceConfiguration>, ICpuTemperature
 {
-    private int _channelIndex;
+    private int _signalIndex;
 
     /// <summary>
     ///     Creates an instance of the CpuTemperature class
@@ -27,30 +27,14 @@ public sealed class CpuTemperature : NullDevice<IDeviceConfiguration>, ICpuTempe
 
     private Device.CpuTemperature Device { get; }
 
-    public override void Execute(ETaskType taskType)
+    protected override void OnWrite()
     {
-        switch (taskType)
-        {
-            case ETaskType.Init:
-            {
-                break;
-            }
-            case ETaskType.Write:
-            {
-                var timestamp = SignalHub.GetTimestamp();
-                var temperature = Device.IsAvailable ? Device.Temperature[Temperature.Units.Kelvin] : double.NaN;
-                SignalHub.SetSignal(new Signal(_channelIndex, temperature, timestamp));
-                break;
-            }
-            case ETaskType.Exit:
-            {
-                break;
-            }
-            default:
-                throw new ArgumentOutOfRangeException(nameof(taskType), taskType, "The task type is not supported.");
-        }
-    }
+        var timestamp = SignalHub.GetTimestamp();
+        var temperature = Device.IsAvailable ? Device.Temperature[Temperature.Units.Kelvin] : double.NaN;
 
+        SignalSources[0].AssignWith(temperature, timestamp);
+    }
+    
     public void Dispose()
     {
         Device.Dispose();
@@ -68,7 +52,7 @@ public sealed class CpuTemperature : NullDevice<IDeviceConfiguration>, ICpuTempe
             {
                 case "CpuTemperature":
                 {
-                    _channelIndex = SignalHub.GetSignalIndex(signalConfiguration);
+                    _signalIndex = GetSignalIndex(signalConfiguration.Name);
                     break;
                 }
                 default:
