@@ -52,7 +52,7 @@ public sealed class CpuTemperature : NullDevice<IDeviceConfiguration>, ICpuTempe
             {
                 case "CpuTemperature":
                 {
-                    _signalIndex = GetSignalIndex(signalConfiguration.Name);
+                    _signalIndex = GetSignalIndex(signalConfiguration);
                     break;
                 }
                 default:
