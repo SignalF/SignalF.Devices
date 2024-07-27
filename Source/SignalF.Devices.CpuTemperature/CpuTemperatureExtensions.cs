@@ -30,8 +30,8 @@ public static class CpuTemperatureExtensions
     public static ISignalFConfiguration AddCpuTemperature(this ISignalFConfiguration configuration, string deviceName, string signalName)
     {
         return configuration.AddCpuTemperatureTemplate()
-            .AddCpuTemperatureDefinition()
-            .AddCpuTemperatureConfiguration(deviceName, signalName);
+                            .AddCpuTemperatureDefinition()
+                            .AddCpuTemperatureConfiguration(deviceName, signalName);
     }
 
     private static ISignalFConfiguration AddCpuTemperatureTemplate(this ISignalFConfiguration configuration)
@@ -39,31 +39,32 @@ public static class CpuTemperatureExtensions
         configuration.AddDeviceTemplate(builder =>
         {
             builder.SetName(DeviceTemplateName)
-                .SetType<CpuTemperature>()
-                .AddSignalSourceDefinition(SignalDefinitionName, EUnitType.Temperature);
+                   .SetType<CpuTemperature>()
+                   .AddSignalSourceDefinition(SignalDefinitionName, EUnitType.Temperature);
         });
 
         return configuration;
     }
 
     private static ISignalFConfiguration AddCpuTemperatureConfiguration(this ISignalFConfiguration configuration,
-        string deviceName, string signalName)
+                                                                        string deviceName, string signalName)
     {
         configuration.AddDeviceConfiguration(builder =>
         {
             builder.SetName(deviceName)
-                .UseDefinition(DeviceDefinitionName)
-                .AddSignalSourceConfiguration(signalName, SignalDefinitionName, Temperature.Units.DegreeCelsius);
+                   .UseDefinition(DeviceDefinitionName)
+                   .AddSignalSourceConfiguration(signalName, SignalDefinitionName, Temperature.Units.DegreeCelsius);
         });
 
         return configuration;
     }
+
     private static ISignalFConfiguration AddCpuTemperatureDefinition(this ISignalFConfiguration configuration)
     {
         configuration.AddDeviceDefinition(builder =>
         {
             builder.SetName(DeviceDefinitionName)
-                .UseTemplate(DeviceTemplateName);
+                   .UseTemplate(DeviceTemplateName);
         });
 
         return configuration;

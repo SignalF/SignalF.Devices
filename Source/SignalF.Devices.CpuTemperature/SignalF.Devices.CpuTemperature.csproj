@@ -1,16 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<Import Project="..\..\Build\Pack.proj" />
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
 	<PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+		<Description>SignalF CPU temperature device binding.</Description>
+		<Title>SignalF.Devices.CpuTemperature</Title>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Scotec.Math.Units" Version="1.0.0" />
-    <PackageReference Include="SignalF.Extensions.Configuration" Version="0.8.0-dev.43" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Scotec.Math.Units" Version="1.0.0" />
+		<PackageReference Include="SignalF.Extensions.Configuration" Version="0.8.0-dev.43" />
+	</ItemGroup>
 
 </Project>

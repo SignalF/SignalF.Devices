@@ -3,7 +3,6 @@ using Microsoft.Extensions.Logging;
 using Scotec.Math.Units;
 using SignalF.Controller.Signals;
 using SignalF.Controller.Signals.Devices;
-using SignalF.Datamodel.Configuration;
 using SignalF.Datamodel.Hardware;
 
 namespace SignalF.Devices.CpuTemperature;
@@ -19,7 +18,7 @@ public sealed class CpuTemperature : NullDevice<IDeviceConfiguration>, ICpuTempe
     /// <summary>
     ///     Creates an instance of the CpuTemperature class
     /// </summary>
-    public CpuTemperature(ISignalHub signalHub, ILogger<NullDevice<IDeviceConfiguration>> logger) 
+    public CpuTemperature(ISignalHub signalHub, ILogger<NullDevice<IDeviceConfiguration>> logger)
         : base(signalHub, logger)
     {
         Device = new Device.CpuTemperature();
@@ -34,7 +33,7 @@ public sealed class CpuTemperature : NullDevice<IDeviceConfiguration>, ICpuTempe
 
         SignalSources[0].AssignWith(temperature, timestamp);
     }
-    
+
     public void Dispose()
     {
         Device.Dispose();
