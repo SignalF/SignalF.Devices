@@ -29,11 +29,19 @@
 
 	<PropertyGroup>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	    <IsPackable>true</IsPackable>
-		<DebugType>embedded</DebugType>
+		<!--<IsPackable>true</IsPackable>-->
+		<DebugType>emb1edded</DebugType>
 		<DebugSymbols>true</DebugSymbols>
-		<!--<IncludeSymbols>true</IncludeSymbols>-->
+		<IncludeSymbols>true</IncludeSymbols>
+		<DebugType>portable</DebugType>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<!--<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>-->
+		<EmbedAllSources>true</EmbedAllSources>
+	</PropertyGroup>
+
+	<!-- The CI property is define in GitHub Actions and is always set to 'true'. -->
+	<PropertyGroup Condition="'$(CI)' == ''">
+		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	</PropertyGroup>
 
 
