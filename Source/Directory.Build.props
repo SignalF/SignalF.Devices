@@ -3,8 +3,8 @@
 
 	<PropertyGroup>
 		<Company Condition="'$(CompanyName)' == ''">scotec Software Solutions AB</Company>
-		<Authors Condition="'$(Authors)' == ''">Olaf Meyer,scotec Software Solutions AB</Authors>
-		<Copyright Condition="'$(Copyright)' == ''">2024 scotec Software Solutions AB</Copyright>
+		<Authors Condition="'$(Authors)' == ''">Olaf Meyer, scotec Software Solutions AB</Authors>
+		<Copyright Condition="'$(Copyright)' == ''">2024 Olaf Meyer, scotec Software Solutions AB</Copyright>
 		<Description Condition="'$(Description)' == ''">Description</Description>
 		<InformationalVersion Condition="'$(InformationalVersion)' == ''">0.0.0</InformationalVersion>
 		<Version Condition="'$(Version)' == ''">0.0.0</Version>
