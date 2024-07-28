@@ -53,7 +53,7 @@ public static class CpuTemperatureExtensions
         {
             builder.SetName(deviceName)
                    .UseDefinition(DeviceDefinitionName)
-                   .AddSignalSourceConfiguration(signalName, SignalDefinitionName, Temperature.Units.DegreeCelsius);
+                   .AddSignalSourceConfiguration(SignalDefinitionName, signalName, Temperature.Units.DegreeCelsius);
         });
 
         return configuration;
