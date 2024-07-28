@@ -18,9 +18,9 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageOutputPath>..\..\LocalPackages</PackageOutputPath>
-		<PackageProjectUrl>https://github.com/Signal-F</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/SignalF</PackageProjectUrl>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<RepositoryUrl>https://github.com/Signal-F/SignalF.DataOutput</RepositoryUrl>
+		<RepositoryUrl>https://github.com/SignalF/SignalF.DataOutput</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageVersion Condition="'$(PackageVersion)' == ''">0.0.0</PackageVersion>
 		<ProjectUrl>https://github.com/SignalF</ProjectUrl>
