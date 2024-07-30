@@ -31,7 +31,7 @@ public sealed class CpuTemperature : NullDevice<IDeviceConfiguration>, ICpuTempe
         var timestamp = SignalHub.GetTimestamp();
         var temperature = Device.IsAvailable ? Device.Temperature[Temperature.Units.Kelvin] : double.NaN;
 
-        SignalSources[0].AssignWith(temperature, timestamp);
+        SignalSources[_signalIndex].AssignWith(temperature, timestamp);
     }
 
     public void Dispose()
