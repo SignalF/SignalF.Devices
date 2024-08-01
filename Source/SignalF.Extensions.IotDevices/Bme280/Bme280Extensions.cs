@@ -1,77 +1,85 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SignalF.Configuration;
 using SignalF.Configuration.Devices;
-using SignalF.Configuration.Devices.Gpio;
 using SignalF.Controller.Configuration;
-using SignalF.Controller.Signals.Devices;
 using SignalF.Datamodel.Hardware;
-using SignalF.Datamodel.Signals;
-using SignalF.Extensions.Configuration;
 
-namespace SignalF.Extensions.IotDevices.Bme280
-{
-    public static class Bme280Extensions
-    {
-        public static ISignalFConfiguration AddBme280Configuration(this ISignalFConfiguration configuration,
-                                                                  Action<IDeviceConfigurationBuilder> builder)
-        {
-            return configuration.AddDeviceConfiguration<IDeviceConfigurationBuilder, Bme280Options>(builder);
-        }
+namespace SignalF.Extensions.IotDevices.Bme280;
 
-        public static ISignalFConfiguration AddBme280Configuration<TType>(this ISignalFConfiguration configuration
-                                                                                 , Action<IDeviceConfigurationBuilder> builder)
-            where TType : Bme280
-        {
-            return configuration.AddDeviceConfiguration<IDeviceConfigurationBuilder, Bme280Options, TType>(builder);
-        }
+//public partial class Bme280Options : SignalFConfigurationOptions
+//{
+//}
 
-        public static ISignalFConfiguration AddBme280Definition(this ISignalFConfiguration configuration, Action<IDeviceDefinitionBuilder> builder)
-        {
-            return configuration.AddDeviceDefinition<IDeviceDefinitionBuilder, Bme280Options>(builder);
-        }
+//public interface
+//    IBme280ConfigurationBuilder : IBme280ConfigurationBuilder<IBme280ConfigurationBuilder,
+//        IDeviceConfiguration, Bme280Options>
+//{
+//}
 
-        public static ISignalFConfiguration AddBme280Definition<TType>(this ISignalFConfiguration configuration,
-                                                                              Action<IDeviceDefinitionBuilder> builder)
-            where TType : Bme280
-        {
-            return configuration.AddDeviceDefinition<IDeviceDefinitionBuilder, Bme280Options, TType>(builder);
-        }
+//public interface
+//    IBme280ConfigurationBuilder<out TBuilder, in TConfiguration, in TOptions> : IDeviceConfigurationBuilder<TBuilder, TConfiguration,
+//        TOptions>
+//    where TBuilder : IDeviceConfigurationBuilder<TBuilder, TConfiguration, TOptions>
+//    where TConfiguration : IDeviceConfiguration
+//    where TOptions : Bme280Options
+//{
+//}
 
-        public static ISignalFConfiguration AddBme280Template(this ISignalFConfiguration configuration, Action<IDeviceTemplateBuilder> builder)
-        {
-            return configuration.AddDeviceTemplate<IDeviceTemplateBuilder, Bme280Options, Bme280>(builder);
-        }
+//public class Bme280ConfigurationBuilder
+//    : Bme280ConfigurationBuilder<Bme280ConfigurationBuilder, IBme280ConfigurationBuilder,
+//          IDeviceConfiguration, Bme280Options>, IBme280ConfigurationBuilder
+//{
+//    protected override IBme280ConfigurationBuilder This => this;
+//}
 
-        public static ISignalFConfiguration AddDeviceTemplate<TType>(this ISignalFConfiguration configuration, Action<IDeviceTemplateBuilder> builder)
-            where TType : class, IDevice
-        {
-            return configuration.AddDeviceTemplate<IDeviceTemplateBuilder, Bme280Options, TType>(builder);
-        }
+//public abstract class Bme280ConfigurationBuilder<TImpl, TBuilder, TConfiguration, TOptions>
+//    : DeviceConfigurationBuilder<TImpl, TBuilder, TConfiguration, TOptions>
+//      , IBme280ConfigurationBuilder<TBuilder, TConfiguration, TOptions>
+//    where TBuilder : IBme280ConfigurationBuilder<TBuilder, TConfiguration, TOptions>
+//    where TImpl : Bme280ConfigurationBuilder<TImpl, TBuilder, TConfiguration, TOptions>
+//    where TConfiguration : IDeviceConfiguration
+//    where TOptions : Bme280Options
+//{
+//}
 
-        public static IServiceCollection AddBme280(this IServiceCollection services)
-        {
-            return services.AddTransient<Bme280>();
-        }
+//public static class Bme280Extensions
+//{
+//    public static ISignalFConfiguration AddBme280Configuration(this ISignalFConfiguration configuration,
+//                                                               Action<IBme280ConfigurationBuilder> builder)
+//    {
+//        return configuration.AddDeviceConfiguration<IBme280ConfigurationBuilder, Bme280Options>(builder);
+//    }
 
-        public static ISignalConfiguration AddBme280(this ISignalFConfiguration configuration, Action<IDeviceConfigurationBuilder> builder)
-        {
-            configuration.AddBme280Definition()
-                         .AddDeviceConfiguration(builder);
-        }
-        public static ISignalFConfiguration AddBme280Definition(this ISignalFConfiguration configuration)
-        {
+//    public static ISignalFConfiguration AddBme280Configuration<TType>(this ISignalFConfiguration configuration
+//                                                                      , Action<IBme280ConfigurationBuilder> builder)
+//        where TType : Bme280
+//    {
+//        return configuration.AddDeviceConfiguration<IBme280ConfigurationBuilder, Bme280Options, TType>(builder);
+//    }
 
-            configuration.AddDeviceDefinition(builder =>
-            {
-                builder.SetName("Bme280Definition")
-                    .UseTemplate("DefaultTemplate")
-                    .AddSignalSourceDefinition("Temperature", EUnitType.Temperature)
-                    .AddSignalSourceDefinition("Pressure", EUnitType.Pressure)
-                    .AddSignalSourceDefinition("Humidity", EUnitType.None);
-                    ;
-            });
+//    public static IServiceCollection AddBme280(this IServiceCollection services)
+//    {
+//        return services.AddTransient<Bme280>();
+//    }
 
-            return configuration;
-        }
-    }
-}
+//    //public static ISignalConfiguration AddBme280(this ISignalFConfiguration configuration, Action<IBme280ConfigurationBuilder> builder)
+//    //{
+//    //    return configuration.AddDeviceConfiguration(builder);
+//    //}
+
+//    //public static ISignalFConfiguration AddBme280Definition(this ISignalFConfiguration configuration)
+//    //{
+
+//    //    configuration.AddDeviceDefinition(builder =>
+//    //    {
+//    //        builder.SetName("Bme280Definition")
+//    //            .UseTemplate("DefaultTemplate")
+//    //            .AddSignalSourceDefinition("Temperature", EUnitType.Temperature)
+//    //            .AddSignalSourceDefinition("Pressure", EUnitType.Pressure)
+//    //            .AddSignalSourceDefinition("Humidity", EUnitType.None);
+//    //            ;
+//    //    });
+
+//    //    return configuration;
+//    //}
+//}

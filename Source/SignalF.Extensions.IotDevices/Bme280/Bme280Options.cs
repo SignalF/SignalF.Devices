@@ -2,6 +2,4 @@
 
 namespace SignalF.Extensions.IotDevices.Bme280;
 
-public class Bme280Options : SignalFConfigurationOptions
-{
-}
+

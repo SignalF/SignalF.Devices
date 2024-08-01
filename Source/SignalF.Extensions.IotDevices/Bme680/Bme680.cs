@@ -8,9 +8,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SignalF.Configuration;
 
 namespace SignalF.Extensions.IotDevices.Bme680
 {
+    [Device]
     public class Bme680 : I2cIotDevice
     {
         private const int TemperatureIndex = 0;

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using SignalF.Configuration;
 using SignalF.Controller.Hardware.Channels;
 using SignalF.Controller.Hardware.Channels.I2c;
 using SignalF.Controller.Signals;
@@ -6,7 +7,7 @@ using SignalF.Datamodel.Hardware;
 
 namespace SignalF.Extensions.IotDevices.Bme280;
 
-
+[Device]
 public class Bme280 : I2cIotDevice
 {
     private const int TemperatureIndex = 0;
