@@ -13,7 +13,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Scotec.Math.Units" Version="1.0.1" />
-		<PackageReference Include="SignalF.Extensions.Configuration" Version="0.8.0-dev.86" />
+		<PackageReference Include="SignalF.Extensions.Configuration" Version="0.8.0-dev.88" />
 	</ItemGroup>
 
 </Project>
