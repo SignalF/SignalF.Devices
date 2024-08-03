@@ -5,7 +5,7 @@ VisualStudioVersion = 17.10.35004.147
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalF.Devices.CpuTemperature", "SignalF.Devices.CpuTemperature\SignalF.Devices.CpuTemperature.csproj", "{2EBB0C6A-D7FD-4D55-A423-634913B35794}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalF.Extensions.IotDevices", "SignalF.Extensions.IotDevices\SignalF.Extensions.IotDevices.csproj", "{E986C322-8214-4AAD-B2ED-F565BA7484A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalF.Devices.IotDevices", "SignalF.Devices.IotDevices\SignalF.Devices.IotDevices.csproj", "{E986C322-8214-4AAD-B2ED-F565BA7484A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
