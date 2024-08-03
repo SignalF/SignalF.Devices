@@ -12,7 +12,7 @@ namespace SignalF.Devices.CpuTemperature;
 ///     CPU temperature.
 /// </summary>
 [SupportedOSPlatform("linux")]
-[Device]
+//[Device]
 public sealed class CpuTemperature : NullDevice<IDeviceConfiguration>, ICpuTemperature
 {
     private int _signalIndex;
