@@ -1,16 +1,12 @@
 ﻿using Microsoft.Extensions.Logging;
-using SignalF.Controller.Hardware.Channels.I2c;
+using SignalF.Configuration;
+using SignalF.Configuration.Integration;
 using SignalF.Controller.Hardware.Channels;
+using SignalF.Controller.Hardware.Channels.I2c;
 using SignalF.Controller.Signals;
 using SignalF.Datamodel.Hardware;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SignalF.Configuration;
 
-namespace SignalF.Extensions.IotDevices.Bme680
+namespace SignalF.Devices.IotDevices.Bme680
 {
     [Device]
     public class Bme680 : I2cIotDevice

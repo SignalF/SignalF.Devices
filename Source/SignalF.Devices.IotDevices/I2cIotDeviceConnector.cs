@@ -2,7 +2,7 @@
 using SignalF.Controller.Hardware.Channels.I2c;
 using I2cDevice = System.Device.I2c.I2cDevice;
 
-namespace SignalF.Extensions.IotDevices;
+namespace SignalF.Devices.IotDevices;
 
 public class I2cIotDeviceConnector : I2cDevice
 {

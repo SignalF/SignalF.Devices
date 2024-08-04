@@ -1,12 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using SignalF.Extensions.IotDevices.Bme280;
 
-namespace SignalF.Extensions.IotDevices;
+namespace SignalF.Devices.IotDevices;
 
 public static class IotDevicesExtensions
 {
     public static IServiceCollection AddIotDevices(this IServiceCollection service)
     {
-        return service.AddBme280();
+        return service;//.AddBme280();
+            ;
     }
 }
