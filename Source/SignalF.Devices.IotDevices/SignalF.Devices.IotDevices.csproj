@@ -4,15 +4,15 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-	  <CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
+    <!-- <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles> -->
+	  <!-- <CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath> -->
   </PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Iot.Device.Bindings" Version="3.2.0" />
 		<PackageReference Include="Scotec.Math.Units" Version="1.0.1" />
-		<PackageReference Include="SignalF.Controller" Version="0.8.0-dev.99" />
-		<PackageReference Include="SignalF.Configuration" Version="0.8.0-dev.99" />
+		<PackageReference Include="SignalF.Controller" Version="0.0.0" />
+		<PackageReference Include="SignalF.Configuration" Version="0.0.0" />
 		<PackageReference Include="SignalF.Configuration.Integration" Version="0.0.0" />
 	</ItemGroup>
 
