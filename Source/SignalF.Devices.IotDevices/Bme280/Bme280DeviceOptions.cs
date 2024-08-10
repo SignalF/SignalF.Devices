@@ -1,4 +1,4 @@
-﻿namespace SignalF.Extensions.IotDevices.Bme280;
+﻿namespace SignalF.Devices.IotDevices.Bme280;
 
 public partial class Bme280DeviceOptions
 {

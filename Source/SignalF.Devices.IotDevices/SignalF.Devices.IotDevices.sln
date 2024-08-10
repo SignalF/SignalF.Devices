@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35004.147
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalF.Extensions.IotDevices", "SignalF.Extensions.IotDevices.csproj", "{5E69056D-4EA7-426C-B30E-469922A499F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalF.Devices.IotDevices", "SignalF.Devices.IotDevices.csproj", "{5E69056D-4EA7-426C-B30E-469922A499F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

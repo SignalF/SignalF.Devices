@@ -3,7 +3,7 @@ using SignalF.Controller.Hardware.Channels.I2c;
 using SignalF.Controller.Signals;
 using SignalF.Datamodel.Hardware;
 
-namespace SignalF.Extensions.IotDevices
+namespace SignalF.Devices.IotDevices
 {
     public abstract class I2cIotDevice : I2cDevice<IDeviceConfiguration>
 

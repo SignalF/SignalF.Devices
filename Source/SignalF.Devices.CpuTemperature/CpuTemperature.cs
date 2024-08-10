@@ -1,6 +1,8 @@
 ﻿using System.Runtime.Versioning;
 using Microsoft.Extensions.Logging;
 using Scotec.Math.Units;
+using SignalF.Configuration;
+using SignalF.Configuration.Integration;
 using SignalF.Controller.Signals;
 using SignalF.Controller.Signals.Devices;
 using SignalF.Datamodel.Hardware;
@@ -11,7 +13,8 @@ namespace SignalF.Devices.CpuTemperature;
 ///     CPU temperature.
 /// </summary>
 [SupportedOSPlatform("linux")]
-public sealed class CpuTemperature : NullDevice<IDeviceConfiguration>, ICpuTemperature
+[Device]
+public class CpuTemperature : NullDevice<IDeviceConfiguration>, ICpuTemperature
 {
     private int _signalIndex;
 

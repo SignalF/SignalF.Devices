@@ -1,11 +1,12 @@
 ﻿using Microsoft.Extensions.Logging;
 using SignalF.Configuration;
+using SignalF.Configuration.Integration;
 using SignalF.Controller.Hardware.Channels;
 using SignalF.Controller.Hardware.Channels.I2c;
 using SignalF.Controller.Signals;
 using SignalF.Datamodel.Hardware;
 
-namespace SignalF.Extensions.IotDevices.Bmp280;
+namespace SignalF.Devices.IotDevices.Bmp280;
 
 [Device]
 public class Bmp280 : I2cIotDevice
