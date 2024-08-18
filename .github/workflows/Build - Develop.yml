@@ -34,6 +34,8 @@ jobs:
       run: dotnet restore ./Source/SignalF.Devices.sln
     - name: Build
       run: dotnet build --no-restore ./Source/SignalF.Devices.sln -c Release -p:Version=$GITVERSION_ASSEMBLYSEMVER -p:InformationalVersion=$GITVERSION_SEMVER -p:PackageVersion=$GITVERSION_SEMVER -p:CompanyName="scotec Software Solutions AB"
+    - name: Directories:
+      run find . -type d
 #    - name: Test
 #      run: dotnet test --no-restore --no-build --verbosity normal ./Source/**/SignalF.Devices.*.sln
 #    - name: Push project
