@@ -1,7 +1,6 @@
 ﻿using System.Runtime.Versioning;
 using Microsoft.Extensions.Logging;
 using Scotec.Math.Units;
-using SignalF.Configuration;
 using SignalF.Configuration.Integration;
 using SignalF.Controller.Signals;
 using SignalF.Controller.Signals.Devices;
@@ -59,7 +58,8 @@ public class CpuTemperature : NullDevice<IDeviceConfiguration>, ICpuTemperature
                 }
                 default:
                 {
-                    throw new Exception($"Configuration of CPU temperature sensor is wrong! Invalid signal definition name '{signalDefinition.Name}'.");
+                    throw new Exception(
+                        $"Configuration of CPU temperature sensor is wrong! Invalid signal definition name '{signalDefinition.Name}'.");
                 }
             }
         }

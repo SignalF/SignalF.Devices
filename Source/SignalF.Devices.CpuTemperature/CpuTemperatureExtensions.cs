@@ -1,9 +1,7 @@
 ﻿using System.Runtime.Versioning;
-using Microsoft.Extensions.DependencyInjection;
 using Scotec.Math.Units;
 using SignalF.Configuration;
 using SignalF.Datamodel.Signals;
-using SignalF.Extensions.Configuration;
 
 namespace SignalF.Devices.CpuTemperature;
 
@@ -17,43 +15,39 @@ public static class CpuTemperatureExtensions
     private const string SignalDefaultName = "CPU-Temperature";
 
     [SupportedOSPlatform("linux")]
-    public static IServiceCollection AddCpuTemperature(this IServiceCollection services)
-    {
-        return services.AddTransient<CpuTemperature>();
-    }
-
     public static ISignalFConfiguration AddCpuTemperature(this ISignalFConfiguration configuration)
     {
         return configuration.AddCpuTemperatureConfiguration(DeviceDefaultName, SignalDefaultName);
     }
 
-    public static ISignalFConfiguration AddCpuTemperature(this ISignalFConfiguration configuration, string deviceName, string signalName)
+    public static ISignalFConfiguration AddCpuTemperature(this ISignalFConfiguration configuration, string deviceName,
+        string signalName)
     {
         return configuration.AddCpuTemperatureTemplate()
-                            .AddCpuTemperatureDefinition()
-                            .AddCpuTemperatureConfiguration(deviceName, signalName);
+            .AddCpuTemperatureDefinition()
+            .AddCpuTemperatureConfiguration(deviceName, signalName);
     }
 
     private static ISignalFConfiguration AddCpuTemperatureTemplate(this ISignalFConfiguration configuration)
     {
-        configuration.AddDeviceTemplate(builder =>
+        configuration.AddCpuTemperatureTemplate(builder =>
         {
             builder.SetName(DeviceTemplateName)
-                   .SetType<CpuTemperature>()
-                   .AddSignalSourceDefinition(SignalDefinitionName, EUnitType.Temperature);
+                .SetType<CpuTemperature>()
+                .AddSignalSourceDefinition(SignalDefinitionName, EUnitType.Temperature);
         });
 
         return configuration;
     }
 
     private static ISignalFConfiguration AddCpuTemperatureConfiguration(this ISignalFConfiguration configuration,
-                                                                        string deviceName, string signalName)
+        string deviceName, string signalName)
     {
-        configuration.AddDeviceConfiguration(builder =>
+        configuration.AddCpuTemperatureConfiguration(builder =>
         {
             builder.SetName(deviceName)
-                   .UseDefinition(DeviceDefinitionName)
-                   .AddSignalSourceConfiguration(SignalDefinitionName, signalName, Temperature.Units.DegreeCelsius);
+                .UseDefinition(DeviceDefinitionName)
+                .AddSignalSourceConfiguration(SignalDefinitionName, signalName, Temperature.Units.DegreeCelsius);
         });
 
         return configuration;
@@ -61,10 +55,10 @@ public static class CpuTemperatureExtensions
 
     private static ISignalFConfiguration AddCpuTemperatureDefinition(this ISignalFConfiguration configuration)
     {
-        configuration.AddDeviceDefinition(builder =>
+        configuration.AddCpuTemperatureDefinition(builder =>
         {
             builder.SetName(DeviceDefinitionName)
-                   .UseTemplate(DeviceTemplateName);
+                .UseTemplate(DeviceTemplateName);
         });
 
         return configuration;

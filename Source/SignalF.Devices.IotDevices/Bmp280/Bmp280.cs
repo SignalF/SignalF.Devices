@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using SignalF.Configuration;
 using SignalF.Configuration.Integration;
 using SignalF.Controller.Hardware.Channels;
 using SignalF.Controller.Hardware.Channels.I2c;
@@ -50,7 +49,8 @@ public class Bmp280 : I2cIotDevice
                 }
                 default:
                 {
-                    throw new Exception($"Configuration of device BMP280 is wrong! Invalid signal definition name '{signalDefinition.Name}'.");
+                    throw new Exception(
+                        $"Configuration of device BMP280 is wrong! Invalid signal definition name '{signalDefinition.Name}'.");
                 }
             }
         }

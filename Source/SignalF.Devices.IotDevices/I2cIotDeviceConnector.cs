@@ -17,25 +17,16 @@ public class I2cIotDeviceConnector : I2cDevice
 
     public override void Read(Span<byte> buffer)
     {
-        foreach (var channel in _channels)
-        {
-            channel.Read(buffer);
-        }
+        foreach (var channel in _channels) channel.Read(buffer);
     }
 
     public override void Write(ReadOnlySpan<byte> buffer)
     {
-        foreach (var channel in _channels)
-        {
-            channel.Write(buffer);
-        }
+        foreach (var channel in _channels) channel.Write(buffer);
     }
 
     public override void WriteRead(ReadOnlySpan<byte> writeBuffer, Span<byte> readBuffer)
     {
-        foreach (var channel in _channels)
-        {
-            channel.WriteRead(writeBuffer, readBuffer);
-        }
+        foreach (var channel in _channels) channel.WriteRead(writeBuffer, readBuffer);
     }
 }
