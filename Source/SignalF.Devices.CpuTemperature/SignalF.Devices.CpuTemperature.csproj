@@ -15,8 +15,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="Scotec.Math.Units" Version="1.0.1" />
-		<PackageReference Include="SignalF.Extensions.Configuration" Version="0.8.0-dev.128" />
-		<PackageReference Include="SignalF.Configuration.Integration" Version="0.8.0-dev.128" />
+		<PackageReference Include="SignalF.Extensions.Configuration" Version="0.8.0-dev.130" />
+		<PackageReference Include="SignalF.Configuration.Integration" Version="0.8.0-dev.130" />
 	</ItemGroup>
 
 </Project>
