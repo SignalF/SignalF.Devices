@@ -8,7 +8,7 @@ using SignalF.Datamodel.Hardware;
 namespace SignalF.Devices.IotDevices.Bme280;
 
 [Device]
-public class Bme280 : I2cIotDevice
+public partial class Bme280 : I2cIotDevice
 {
     private const int TemperatureIndex = 0;
     private const int PressureIndex = 1;
@@ -32,7 +32,10 @@ public class Bme280 : I2cIotDevice
         base.OnConfigure(configuration);
 
         Array.Fill(_signalIndices, -1);
-        foreach (var signalDefinition in configuration.Definition.Template.SignalSourceDefinitions)
+        var signalSourceDefinitions = configuration.Definition.SignalSourceDefinitions
+                                                   .Concat(configuration.Definition.Template.SignalSourceDefinitions);
+
+        foreach (var signalDefinition in signalSourceDefinitions)
         {
             var signalConfiguration = configuration.SignalSources.Single(s => s.Definition.Id == signalDefinition.Id);
 
