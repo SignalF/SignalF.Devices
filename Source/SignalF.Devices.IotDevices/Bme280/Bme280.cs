@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using SignalF.Configuration;
 using SignalF.Configuration.Integration;
 using SignalF.Controller.Hardware.Channels;
 using SignalF.Controller.Hardware.Channels.I2c;
@@ -40,24 +39,25 @@ public class Bme280 : I2cIotDevice
             switch (signalDefinition.Name)
             {
                 case "Temperature":
-                    {
-                        _signalIndices[TemperatureIndex] = GetSignalIndex(signalConfiguration);
-                        break;
-                    }
+                {
+                    _signalIndices[TemperatureIndex] = GetSignalIndex(signalConfiguration);
+                    break;
+                }
                 case "Pressure":
-                    {
-                        _signalIndices[PressureIndex] = GetSignalIndex(signalConfiguration);
-                        break;
-                    }
+                {
+                    _signalIndices[PressureIndex] = GetSignalIndex(signalConfiguration);
+                    break;
+                }
                 case "Humidity":
-                    {
-                        _signalIndices[HumidityIndex] = GetSignalIndex(signalConfiguration);
-                        break;
-                    }
+                {
+                    _signalIndices[HumidityIndex] = GetSignalIndex(signalConfiguration);
+                    break;
+                }
                 default:
-                    {
-                        throw new Exception($"Configuration of device BME280 is wrong! Invalid signal definition name '{signalDefinition.Name}'.");
-                    }
+                {
+                    throw new Exception(
+                        $"Configuration of device BME280 is wrong! Invalid signal definition name '{signalDefinition.Name}'.");
+                }
             }
         }
     }
@@ -76,11 +76,13 @@ public class Bme280 : I2cIotDevice
             _bme280.TryReadTemperature(out var temperature);
             SignalSources[_signalIndices[TemperatureIndex]].AssignWith(temperature.DegreesCelsius, timestamp);
         }
+
         if (_signalIndices[TemperatureIndex] != -1)
         {
             _bme280.TryReadPressure(out var pressure);
             SignalSources[_signalIndices[PressureIndex]].AssignWith(pressure.Pascals, timestamp);
         }
+
         if (_signalIndices[TemperatureIndex] != -1)
         {
             _bme280.TryReadHumidity(out var humidity);
