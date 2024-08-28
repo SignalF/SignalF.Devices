@@ -68,7 +68,7 @@ public class Bme680 : I2cIotDevice
         }
     }
 
-    protected override void OnRead()
+    protected override void OnWrite()
     {
         var timestamp = SignalHub.GetTimestamp();
 
