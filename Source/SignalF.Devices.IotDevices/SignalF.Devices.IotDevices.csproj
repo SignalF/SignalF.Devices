@@ -11,8 +11,8 @@
 	<ItemGroup>
 		<PackageReference Include="Iot.Device.Bindings" Version="3.2.0" />
 		<PackageReference Include="Scotec.Math.Units" Version="1.0.1" />
-		<PackageReference Include="SignalF.Configuration" Version="0.8.0-dev.132" />
-		<PackageReference Include="SignalF.Configuration.Integration" Version="0.8.0-dev.132" />
+		<PackageReference Include="SignalF.Configuration" Version="0.8.0-dev.136" />
+		<PackageReference Include="SignalF.Configuration.Integration" Version="0.8.0-dev.136" />
 	</ItemGroup>
 
 </Project>
