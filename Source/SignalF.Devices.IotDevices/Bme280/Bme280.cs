@@ -96,13 +96,13 @@ public partial class Bme280 : I2cIotDevice
             SignalSources[_signalIndices[TemperatureIndex]].AssignWith(temperature.DegreesCelsius, timestamp);
         }
 
-        if (_signalIndices[TemperatureIndex] != -1)
+        if (_signalIndices[PressureIndex] != -1)
         {
             _bme280.TryReadPressure(out var pressure);
             SignalSources[_signalIndices[PressureIndex]].AssignWith(pressure.Pascals, timestamp);
         }
 
-        if (_signalIndices[TemperatureIndex] != -1)
+        if (_signalIndices[HumidityIndex] != -1)
         {
             _bme280.TryReadHumidity(out var humidity);
             SignalSources[_signalIndices[HumidityIndex]].AssignWith(humidity.Percent, timestamp);
