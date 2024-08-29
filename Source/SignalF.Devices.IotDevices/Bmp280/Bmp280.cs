@@ -4,6 +4,7 @@ using SignalF.Controller.Hardware.Channels;
 using SignalF.Controller.Hardware.Channels.I2c;
 using SignalF.Controller.Signals;
 using SignalF.Datamodel.Hardware;
+using SignalF.Devices.IotDevices.Bme280;
 
 namespace SignalF.Devices.IotDevices.Bmp280;
 
@@ -16,6 +17,7 @@ public class Bmp280 : I2cIotDevice
     private readonly int[] _signalIndices = new int[2];
 
     private Iot.Device.Bmxx80.Bmp280? _bmp280;
+    private I2cIotDeviceConnector? _deviceConnector;
 
     public Bmp280(ISignalHub signalHub, ILogger<I2cIotDevice> logger) : base(signalHub, logger)
     {
@@ -23,7 +25,7 @@ public class Bmp280 : I2cIotDevice
 
     public override void AssignChannels(IList<IChannel> channels)
     {
-        _bmp280 = new Iot.Device.Bmxx80.Bmp280(new I2cIotDeviceConnector(channels.OfType<II2cChannel>().ToList()));
+        _deviceConnector = new I2cIotDeviceConnector(channels.OfType<II2cChannel>().ToList());
     }
 
     protected override void OnConfigure(IDeviceConfiguration configuration)
@@ -56,6 +58,35 @@ public class Bmp280 : I2cIotDevice
         }
     }
 
+    protected override void OnInitialize()
+    {
+        base.OnInitialize();
+
+        if (_deviceConnector == null)
+        {
+            throw new NullReferenceException(nameof(_deviceConnector));
+        }
+
+        _bmp280 = new Iot.Device.Bmxx80.Bmp280(_deviceConnector);
+
+        var options = GetOptions<Bmp280Options>();
+        if (options != null)
+        {
+            _bmp280.SetPowerMode(options.PowerMode);
+            _bmp280.PressureSampling = options.PressureSampling;
+            _bmp280.TemperatureSampling = options.TemperatureSampling;
+            _bmp280.StandbyTime = options.StandbyTime;
+        }
+    }
+
+    protected override void OnExit()
+    {
+        _bmp280?.Dispose();
+        _bmp280 = null;
+
+        base.OnExit();
+    }
+
     protected override void OnWrite()
     {
         var timestamp = SignalHub.GetTimestamp();
@@ -71,7 +102,7 @@ public class Bmp280 : I2cIotDevice
             SignalSources[_signalIndices[TemperatureIndex]].AssignWith(temperature.DegreesCelsius, timestamp);
         }
 
-        if (_signalIndices[TemperatureIndex] != -1)
+        if (_signalIndices[PressureIndex] != -1)
         {
             _bmp280.TryReadPressure(out var pressure);
             SignalSources[_signalIndices[PressureIndex]].AssignWith(pressure.Pascals, timestamp);

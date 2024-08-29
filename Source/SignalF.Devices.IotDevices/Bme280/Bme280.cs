@@ -1,9 +1,12 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Iot.Device.Bmxx80;
+using Iot.Device.Bmxx80.PowerMode;
+using Microsoft.Extensions.Logging;
 using SignalF.Configuration.Integration;
 using SignalF.Controller.Hardware.Channels;
 using SignalF.Controller.Hardware.Channels.I2c;
 using SignalF.Controller.Signals;
 using SignalF.Datamodel.Hardware;
+using Microsoft.Extensions.Configuration;
 
 namespace SignalF.Devices.IotDevices.Bme280;
 
@@ -29,7 +32,6 @@ public partial class Bme280 : I2cIotDevice
         // and writing in the constructor. As this already happens in the configuration
         // phase of the SignalF controller, the channel is not yet open. For this reason,
         // the Bme280 must not be instantiated here. This can only be done in the Init method.
-        //_bme280 = new Iot.Device.Bmxx80.Bme280(new I2cIotDeviceConnector(channels.OfType<II2cChannel>().ToList()));
         _deviceConnector = new I2cIotDeviceConnector(channels.OfType<II2cChannel>().ToList());
     }
 
@@ -74,11 +76,31 @@ public partial class Bme280 : I2cIotDevice
     protected override void OnInitialize()
     {
         base.OnInitialize();
+
         if (_deviceConnector == null)
         {
             throw new NullReferenceException(nameof(_deviceConnector));
         }
+
         _bme280 = new Iot.Device.Bmxx80.Bme280(_deviceConnector);
+        
+        var options = GetOptions<Bme280Options>();
+        if (options != null)
+        {
+            _bme280.SetPowerMode(options.PowerMode);
+            _bme280.PressureSampling = options.PressureSampling;
+            _bme280.TemperatureSampling = options.TemperatureSampling;
+            _bme280.HumiditySampling = options.HumiditySampling;
+            _bme280.StandbyTime = options.StandbyTime;
+        }
+    }
+
+    protected override void OnExit()
+    {
+        _bme280?.Dispose();
+        _bme280 = null;
+
+        base.OnExit();
     }
 
     protected override void OnWrite()
@@ -93,7 +115,7 @@ public partial class Bme280 : I2cIotDevice
         if (_signalIndices[TemperatureIndex] != -1)
         {
             _bme280.TryReadTemperature(out var temperature);
-            SignalSources[_signalIndices[TemperatureIndex]].AssignWith(temperature.DegreesCelsius, timestamp);
+            SignalSources[_signalIndices[TemperatureIndex]].AssignWith(temperature.Kelvins, timestamp);
         }
 
         if (_signalIndices[PressureIndex] != -1)
