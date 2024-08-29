@@ -15,8 +15,8 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(Configuration)' != 'Local'">
-		<PackageReference Include="SignalF.Configuration" Version="0.8.0-dev.136" />
-		<PackageReference Include="SignalF.Configuration.Integration" Version="0.8.0-dev.136" />
+		<PackageReference Include="SignalF.Configuration" Version="0.8.0-dev.140" />
+		<PackageReference Include="SignalF.Configuration.Integration" Version="0.8.0-dev.140" />
 	</ItemGroup>
 
 	<ItemGroup>

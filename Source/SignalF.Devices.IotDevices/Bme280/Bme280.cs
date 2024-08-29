@@ -17,6 +17,7 @@ public partial class Bme280 : I2cIotDevice
     private readonly int[] _signalIndices = new int[3];
 
     private Iot.Device.Bmxx80.Bme280? _bme280;
+    private I2cIotDeviceConnector? _deviceConnector;
 
     public Bme280(ISignalHub signalHub, ILogger<I2cIotDevice> logger) : base(signalHub, logger)
     {
@@ -24,7 +25,12 @@ public partial class Bme280 : I2cIotDevice
 
     public override void AssignChannels(IList<IChannel> channels)
     {
-        _bme280 = new Iot.Device.Bmxx80.Bme280(new I2cIotDeviceConnector(channels.OfType<II2cChannel>().ToList()));
+        // The Bme280 implementation already attempts to access the I2cDevice for reading
+        // and writing in the constructor. As this already happens in the configuration
+        // phase of the SignalF controller, the channel is not yet open. For this reason,
+        // the Bme280 must not be instantiated here. This can only be done in the Init method.
+        //_bme280 = new Iot.Device.Bmxx80.Bme280(new I2cIotDeviceConnector(channels.OfType<II2cChannel>().ToList()));
+        _deviceConnector = new I2cIotDeviceConnector(channels.OfType<II2cChannel>().ToList());
     }
 
     protected override void OnConfigure(IDeviceConfiguration configuration)
@@ -63,6 +69,16 @@ public partial class Bme280 : I2cIotDevice
                 }
             }
         }
+    }
+
+    protected override void OnInitialize()
+    {
+        base.OnInitialize();
+        if (_deviceConnector == null)
+        {
+            throw new NullReferenceException(nameof(_deviceConnector));
+        }
+        _bme280 = new Iot.Device.Bmxx80.Bme280(_deviceConnector);
     }
 
     protected override void OnWrite()
