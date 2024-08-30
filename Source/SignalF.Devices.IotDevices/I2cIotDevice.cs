@@ -8,7 +8,7 @@ namespace SignalF.Devices.IotDevices;
 public abstract class I2cIotDevice : I2cDevice<IDeviceConfiguration>
 
 {
-    protected I2cIotDevice(ISignalHub signalHub, ILogger<I2cDevice<IDeviceConfiguration>> logger) : base(signalHub,
+    protected I2cIotDevice(ISignalHub signalHub, ILogger<I2cIotDevice> logger) : base(signalHub,
         logger)
     {
     }

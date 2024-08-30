@@ -1,12 +1,9 @@
-﻿using Iot.Device.Bmxx80;
-using Iot.Device.Bmxx80.PowerMode;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using SignalF.Configuration.Integration;
 using SignalF.Controller.Hardware.Channels;
 using SignalF.Controller.Hardware.Channels.I2c;
 using SignalF.Controller.Signals;
 using SignalF.Datamodel.Hardware;
-using Microsoft.Extensions.Configuration;
 
 namespace SignalF.Devices.IotDevices.Bme280;
 
