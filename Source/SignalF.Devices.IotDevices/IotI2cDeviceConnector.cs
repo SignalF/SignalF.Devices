@@ -4,11 +4,11 @@ using I2cDevice = System.Device.I2c.I2cDevice;
 
 namespace SignalF.Devices.IotDevices;
 
-public class I2cIotDeviceConnector : I2cDevice
+public class IotI2cDeviceConnector : I2cDevice
 {
     private readonly IList<II2cChannel> _channels;
 
-    public I2cIotDeviceConnector(IList<II2cChannel> channels)
+    public IotI2cDeviceConnector(IList<II2cChannel> channels)
     {
         _channels = channels;
     }

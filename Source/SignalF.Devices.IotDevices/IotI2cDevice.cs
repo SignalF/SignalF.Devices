@@ -5,10 +5,10 @@ using SignalF.Datamodel.Hardware;
 
 namespace SignalF.Devices.IotDevices;
 
-public abstract class I2cIotDevice : I2cDevice<IDeviceConfiguration>
+public abstract class IotI2cDevice : I2cDevice<IDeviceConfiguration>
 
 {
-    protected I2cIotDevice(ISignalHub signalHub, ILogger<I2cIotDevice> logger) : base(signalHub,
+    protected IotI2cDevice(ISignalHub signalHub, ILogger<IotI2cDevice> logger) : base(signalHub,
         logger)
     {
     }

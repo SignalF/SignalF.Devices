@@ -9,7 +9,7 @@ using SignalF.Devices.IotDevices.Bme280;
 namespace SignalF.Devices.IotDevices.Bme680;
 
 [Device]
-public class Bme680 : I2cIotDevice
+public class Bme680 : IotI2cDevice
 {
     private const int TemperatureIndex = 0;
     private const int PressureIndex = 1;
@@ -19,15 +19,15 @@ public class Bme680 : I2cIotDevice
     private readonly int[] _signalIndices = new int[4];
 
     private Iot.Device.Bmxx80.Bme680? _bme680;
-    private I2cIotDeviceConnector? _deviceConnector;
+    private IotI2cDeviceConnector? _deviceConnector;
 
-    public Bme680(ISignalHub signalHub, ILogger<I2cIotDevice> logger) : base(signalHub, logger)
+    public Bme680(ISignalHub signalHub, ILogger<IotI2cDevice> logger) : base(signalHub, logger)
     {
     }
 
     public override void AssignChannels(IList<IChannel> channels)
     {
-        _deviceConnector = new I2cIotDeviceConnector(channels.OfType<II2cChannel>().ToList());
+        _deviceConnector = new IotI2cDeviceConnector(channels.OfType<II2cChannel>().ToList());
     }
 
     protected override void OnConfigure(IDeviceConfiguration configuration)

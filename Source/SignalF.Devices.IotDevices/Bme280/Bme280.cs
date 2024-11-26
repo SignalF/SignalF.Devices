@@ -8,7 +8,7 @@ using SignalF.Datamodel.Hardware;
 namespace SignalF.Devices.IotDevices.Bme280;
 
 [Device]
-public partial class Bme280 : I2cIotDevice
+public partial class Bme280 : IotI2cDevice
 {
     private const int TemperatureIndex = 0;
     private const int PressureIndex = 1;
@@ -17,9 +17,9 @@ public partial class Bme280 : I2cIotDevice
     private readonly int[] _signalIndices = new int[3];
 
     private Iot.Device.Bmxx80.Bme280? _bme280;
-    private I2cIotDeviceConnector? _deviceConnector;
+    private IotI2cDeviceConnector? _deviceConnector;
 
-    public Bme280(ISignalHub signalHub, ILogger<I2cIotDevice> logger) : base(signalHub, logger)
+    public Bme280(ISignalHub signalHub, ILogger<IotI2cDevice> logger) : base(signalHub, logger)
     {
     }
 
@@ -29,7 +29,7 @@ public partial class Bme280 : I2cIotDevice
         // and writing in the constructor. As this already happens in the configuration
         // phase of the SignalF controller, the channel is not yet open. For this reason,
         // the Bme280 must not be instantiated here. This can only be done in the Init method.
-        _deviceConnector = new I2cIotDeviceConnector(channels.OfType<II2cChannel>().ToList());
+        _deviceConnector = new IotI2cDeviceConnector(channels.OfType<II2cChannel>().ToList());
     }
 
     protected override void OnConfigure(IDeviceConfiguration configuration)

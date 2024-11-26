@@ -5,10 +5,10 @@ using SignalF.Datamodel.Hardware;
 
 namespace SignalF.Devices.IotDevices;
 
-public abstract class SpiIotDevice : SpiDevice<IDeviceConfiguration>
+public abstract class IotSpiDevice : SpiDevice<IDeviceConfiguration>
 
 {
-    protected SpiIotDevice(ISignalHub signalHub, ILogger<SpiIotDevice> logger) : base(signalHub,
+    protected IotSpiDevice(ISignalHub signalHub, ILogger<IotSpiDevice> logger) : base(signalHub,
         logger)
     {
     }

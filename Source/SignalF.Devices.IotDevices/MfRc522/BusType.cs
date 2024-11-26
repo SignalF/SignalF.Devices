@@ -4,9 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SignalF.Devices.IotDevices.Rc522
+namespace SignalF.Devices.IotDevices.MfRc522
 {
-    internal class Rc522
+    public enum BusType
     {
+        Spi,
+
+        I2c,
+
+        Seriell
     }
 }

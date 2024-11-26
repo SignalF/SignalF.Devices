@@ -4,11 +4,11 @@ using SpiDevice = System.Device.Spi.SpiDevice;
 
 namespace SignalF.Devices.IotDevices;
 
-public class SpiIotDeviceConnector : SpiDevice
+public class IotSpiDeviceConnector : SpiDevice
 {
     private readonly IList<ISpiChannel> _channels;
 
-    public SpiIotDeviceConnector(IList<ISpiChannel> channels)
+    public IotSpiDeviceConnector(IList<ISpiChannel> channels)
     {
         _channels = channels;
     }
